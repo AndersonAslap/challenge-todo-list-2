@@ -5,6 +5,7 @@ import { Header } from './components/Header/Header';
 import './global.css';
 
 import styles from './App.module.css';
+import { TaskList } from './components/TaskList/TaskList';
 
 interface Task {
   id: string;
@@ -23,6 +24,7 @@ function App() {
       <div className={styles.container}>
         <main className={styles.main}>
           <FormInput onSetTask={setTasks} />
+          <TaskList tasks={tasks} />
         </main>
       </div>
     </>

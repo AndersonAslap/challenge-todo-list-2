@@ -6,3 +6,11 @@
 
     margin-top: -27px;
 }
+
+.main {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 64px;
+}
