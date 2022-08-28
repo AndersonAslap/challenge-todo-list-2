@@ -1,4 +1,5 @@
-import { Counter } from '../Counter/Counter';
+import { BoxWithoutTask } from './BoxWithoutTask/BoxWithoutTask';
+import { Counter } from './Counter/Counter';
 import styles from './TaskList.module.css';
 
 interface Task {
@@ -16,6 +17,12 @@ export function TaskList({ tasks }: TaskListProps) {
     return (
         <div className={styles.container}>
             <Counter tasks={tasks} />
+
+            {
+                (tasks.length === 0)
+                    ? <BoxWithoutTask />
+                    : null
+            }
         </div>
     )
 }
