@@ -7,3 +7,9 @@
 
     gap: 24px;
 }
+
+.table {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
