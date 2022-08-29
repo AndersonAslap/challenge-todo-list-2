@@ -14,21 +14,23 @@ interface Task {
 
 interface TaskListItemProps {
     task: Task;
-    onSetTask: (tasks: Task[]) => void;
+    onHandleRemoveTask: (task: Task) => void;
+    onHandleCompletedTask: (task: Task) => void;
 }
 
-export function TaskListItem({ task, onSetTask }: TaskListItemProps) {
+export function TaskListItem({ task, onHandleRemoveTask, onHandleCompletedTask }: TaskListItemProps) {
+
     return (
-        <div className={styles.container}>
+        <div className={!task.completed ? `${styles.container} ${styles.taskInCompleted}` : styles.container}>
             {
-                task.completed ? <button><img src={completedCheck} /></button> : <button><img src={incompletedCheck} /></button>
+                task.completed ? <button onClick={() => onHandleCompletedTask(task)}><img src={completedCheck} /></button> : <button onClick={() => onHandleCompletedTask(task)}><img src={incompletedCheck} /></button>
             }
 
             <p className={task.completed ? `${styles.taskCompleted} ${styles.content}` : `${styles.content}`}>
                 {task.description}
             </p>
 
-            <button className={styles.btnRemove}>
+            <button className={styles.btnRemove} onClick={() => onHandleRemoveTask(task)}>
                 <Trash size={20} />
             </button>
         </div>

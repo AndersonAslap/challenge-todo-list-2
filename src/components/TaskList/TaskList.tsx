@@ -16,6 +16,24 @@ interface TaskListProps {
 }
 
 export function TaskList({ tasks, onSetTask }: TaskListProps) {
+
+    function handleRemoveTask(task: Task): void {
+        const tasks_ = tasks.filter((t) => t.id !== task.id);
+        onSetTask(tasks_);
+    }
+
+    function handleCompletedTask(taskUpdate: Task): void {
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === taskUpdate.id) {
+                task.completed = !task.completed
+            }
+
+            return task;
+        });
+
+        onSetTask(updatedTasks);
+    }
+
     return (
         <div className={styles.container}>
             <Counter tasks={tasks} />
@@ -26,7 +44,14 @@ export function TaskList({ tasks, onSetTask }: TaskListProps) {
                     : <div className={styles.table}>
                         {
                             tasks.map((task) => (
-                                <TaskListItem task={task} onSetTask={onSetTask} />
+
+                                <TaskListItem
+                                    key={task.id}
+                                    task={task}
+                                    onHandleRemoveTask={handleRemoveTask}
+                                    onHandleCompletedTask={handleCompletedTask}
+                                />
+
                             ))
                         }
                     </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormInput } from './components/FormInput/FormInput';
 import { Header } from './components/Header/Header';
 
@@ -14,24 +14,11 @@ interface Task {
   created_at: Date;
 }
 
-const tasksExamples: Task[] = [
-  {
-    id: 'abcd',
-    description: 'Realizar Tarefa 1',
-    completed: false,
-    created_at: new Date()
-  },
-  {
-    id: 'abce',
-    description: 'Realizar Tarefa 2',
-    completed: true,
-    created_at: new Date()
-  }
-]
-
 function App() {
 
-  const [tasks, setTasks] = useState<Task[]>(tasksExamples);
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  useEffect(() => { console.log('here') }, [tasks]);
 
   return (
     <>
